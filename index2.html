@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  
+  <body>
+    <div id="message"></div>
+  
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+  
+      socket.on('connect', function (socket) {
+        console.log("socket",socket)
+        console.log('Connected!');
+      });
+
+// socket.emit('CH01', 'user2', 'user2');
+     
+socket.on('user-notices', (socketData) => {
+  console.log("user notice in user 2")
+})
+
+    </script>
+  </body>
+  </html>

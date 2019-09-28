@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+
+<head>
+</head>
+
+<body>
+  <script src="/socket.io/socket.io.js"></script>
+  <div class=”container”>
+    <br>
+    <div class=”jumbotron”>
+      <h1>hi user1</h1>
+      <h3 class="display-4">Send Message to any user </h3>
+      <br>
+      <input id="fname" class=”form-control” placeholder="from user name">
+      <br>
+      <br>
+      <input id="tname" class=”form-control” placeholder="to user name">
+      <br>
+      <textarea id="message" class=”form-control” placeholder="Your Message Here">
+</textarea>
+      <br>
+      <button id="send" class=”btn btn-success
+        onclick="check(document.getElementById('fname').value,document.getElementById('message').value,document.getElementById('tname').value)">Send</button>
+    </div>
+    <div id="messages">
+    </div>
+    <p id="demo"></p>
+  </div>
+
+  <script>
+    var socket = io.connect('http://localhost:8000', { reconnect: true });
+
+    socket.on('connect', function (socket) {
+      console.log('user1 Connected!');
+    });
+
+    socket.emit('storeClientInfo', { userId: "user1" });
+
+    var check = function (fname, msg, tname) {
+      var data = { fromUserId: fname, toUserId: tname, fname: fname, tname:tname, msg: msg, timestamp: Date() };
+      socket.emit('chatmsg', data);
+      console.log( 'you: '+ data.msg)
+    }
+
+    socket.on('message', function (status) {
+      console.log(status.fname +':'+ status.msg)
+    });
+    
+    socket.on('storedmsg', function (status) {
+      console.log('stored msg',status)
+    });
+  </script>
+</body>
+
+</html>
