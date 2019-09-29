@@ -1,0 +1,22 @@
+{
+  "name": "socketchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "author": "kumar",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "eslint": "^5.12.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.16",
+    "mongoose-increment": "^2.0.0",
+    "socket.io": "^2.2.0"
+  }
+}
